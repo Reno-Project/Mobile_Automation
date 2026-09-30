@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Run TestNG Suite",
+      "request": "launch",
+      "mainClass": "com.mobile.automation.runners.TestNGRunner",
+      "projectName": "Mobile_Automation",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "JAVA_HOME": "C:\\Program Files\\Microsoft\\jdk-17.0.20.101-hotspot"
+      }
+    },
+    {
+      "type": "java",
+      "name": "Run LaunchAppTest",
+      "request": "launch",
+      "mainClass": "org.testng.TestNG",
+      "args": [
+        "-testclass",
+        "com.mobile.automation.tests.LaunchAppTest"
+      ],
+      "projectName": "Mobile_Automation",
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "JAVA_HOME": "C:\\Program Files\\Microsoft\\jdk-17.0.20.101-hotspot"
+      }
+    }
+  ]
+}
