@@ -18,10 +18,7 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * RenoHome signup page — Android-only locators (UiAutomator2).
- * Uses @text / @content-desc / UiSelector. Never uses iOS @name / @label / @accessible.
- */
+
 public class SignupPage {
 
     private final AndroidDriver driver;
@@ -69,7 +66,7 @@ public class SignupPage {
     private static final By SETUP_PASSWORD_SCREEN = androidContains("Setup your password");
     private static final By NOTIFICATIONS_SCREEN = androidContains("Don't miss on important project updates");
 
-    /** Phone number field only — not country code. From your Android xpath (bounds omitted). */
+    /** Phone number field  */
     private static final List<By> PHONE_INPUT_LOCATORS = Arrays.asList(
             AppiumBy.xpath("//android.widget.EditText[@text='Your phone' and @clickable='true' and @hint='Your phone']"),
             AppiumBy.xpath("//*[@class='android.widget.EditText' and @text='Your phone' and @clickable='true' and @hint='Your phone']"),
@@ -79,7 +76,7 @@ public class SignupPage {
             AppiumBy.androidUIAutomator("new UiSelector().className(\"android.widget.EditText\").textContains(\"Your phone\")")
     );
 
-    /** Phone screen markers — few locators so this step stays fast. */
+    /** Phone screen markers  */
     private static final List<By> PHONE_SCREEN_LOCATORS = Arrays.asList(
             AppiumBy.xpath("//android.widget.EditText[@hint='Your phone' or @text='Your phone']"),
             AppiumBy.androidUIAutomator("new UiSelector().textContains(\"phone number\")"),
@@ -87,7 +84,7 @@ public class SignupPage {
     );
 
     /**
-     * OTP entry screen only — do not match the phone screen text "OTP will be sent".
+     * OTP entry screen only.
      */
     private static final List<By> OTP_SCREEN_LOCATORS = Arrays.asList(
             AppiumBy.androidUIAutomator("new UiSelector().textContains(\"Enter OTP\")"),
@@ -106,7 +103,7 @@ public class SignupPage {
     );
 
     /**
-     * OTP input section — ViewGroup (not always EditText). From your Android xpath + fallbacks.
+     * OTP input section.
      */
     private static final List<By> OTP_SECTION_LOCATORS = Arrays.asList(
             AppiumBy.xpath("//*[@class='android.view.ViewGroup' and @bounds='[171, 1191][126, 144]' and @package='com.renohome']"),
@@ -121,10 +118,7 @@ public class SignupPage {
             AppiumBy.xpath("//android.view.ViewGroup[@clickable='true' and @package='com.renohome']")
     );
 
-    /**
-     * iOS had: //*[@name="Signup" and @label="Signup" ...]
-     * Android: text / content-desc / UiSelector only.
-     */
+   
     private static final List<By> SIGNUP_LOCATORS = Arrays.asList(
             AppiumBy.androidUIAutomator("new UiSelector().text(\"Signup\")"),
             AppiumBy.androidUIAutomator("new UiSelector().description(\"Signup\")"),

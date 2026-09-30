@@ -4,6 +4,9 @@ import com.mobile.automation.config.CapabilitiesConfig;
 import com.mobile.automation.db.DbHelper;
 import com.mobile.automation.pages.SignupPage;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -21,10 +24,13 @@ public class SignupFlow {
      * Runs the full signup journey through Welcome to Reno.
      */
     public void completeSignup() {
-        String name = CapabilitiesConfig.getSignupName();
-        String emailLocal = CapabilitiesConfig.getSignupEmailLocal();
+        int runNumber = nextRunNumber();
+        String name = CapabilitiesConfig.getSignupNamePrefix() + " " + runNumber;
+        String emailLocal = CapabilitiesConfig.getSignupEmailPrefix() + runNumber;
         String password = CapabilitiesConfig.getSignupPassword();
         String phone = generatePhoneStartingWithFive();
+        System.out.println("Using name: " + name);
+        System.out.println("Using email: " + emailLocal + "@gmail.com");
 
         signupPage.handleUpdateAppCtaIfPresent();
         signupPage.waitSeconds(1);
@@ -65,6 +71,26 @@ public class SignupFlow {
         signupPage.skipFaceIdIfPresent();
         signupPage.handleNotificationsIfPresent();
         signupPage.assertWelcomeScreen();
+    }
+
+    /**
+     * Reads signup-counter.txt, uses that number for this run, then stores the next one.
+     */
+    private static int nextRunNumber() {
+        Path counterFile = Path.of(System.getProperty("user.dir"), "signup-counter.txt");
+        int current = 1;
+        try {
+            if (Files.exists(counterFile)) {
+                String text = Files.readString(counterFile).trim();
+                if (!text.isEmpty()) {
+                    current = Integer.parseInt(text);
+                }
+            }
+            Files.writeString(counterFile, Integer.toString(current + 1));
+        } catch (IOException | NumberFormatException e) {
+            System.out.println("Could not update signup counter, using " + current + ": " + e.getMessage());
+        }
+        return current;
     }
 
     private static String generatePhoneStartingWithFive() {

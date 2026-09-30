@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 /**
  * End-to-end signup: launch app through Welcome to Reno.
  */
-public class SampleSignupTest extends BaseTest {
+public class SignupTest extends BaseTest {
 
     @Test(description = "Complete RenoHome signup flow with DB OTP")
     public void shouldCompleteSignupSuccessfully() {

@@ -5,9 +5,6 @@ import com.mobile.automation.base.DriverManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-/**
- * Manual smoke: only launches the app and confirms the session is alive.
- */
 public class LaunchAppTest extends BaseTest {
 
     @Test(description = "Launch RenoHome on the connected device")

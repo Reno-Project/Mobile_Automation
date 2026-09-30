@@ -52,12 +52,12 @@ public final class CapabilitiesConfig {
         return get("login.password");
     }
 
-    public static String getSignupName() {
-        return get("signup.name", "Sarthak Reno Test");
+    public static String getSignupNamePrefix() {
+        return get("signup.name.prefix", "sarthak Reno");
     }
 
-    public static String getSignupEmailLocal() {
-        return get("signup.email.local", "sarthakrenotest");
+    public static String getSignupEmailPrefix() {
+        return get("signup.email.prefix", "sarthakreno");
     }
 
     public static String getSignupPassword() {

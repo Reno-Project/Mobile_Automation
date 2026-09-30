@@ -7,7 +7,7 @@
     </test>
     <test name="SignupTests">
         <classes>
-            <class name="com.mobile.automation.tests.SampleSignupTest"/>
+            <class name="com.mobile.automation.tests.SignupTest"/>
         </classes>
     </test>
 </suite>
